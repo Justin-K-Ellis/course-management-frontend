@@ -1,23 +1,35 @@
+import { Outlet, Link } from "react-router-dom";
+
 const Layout = () => {
   return (
-    <div className="navbar bg-primary-content">
-      <div className="navbar-start font-bold text-3xl hover:opacity-80">
-        <a href="/">Course Management</a>
+    <>
+      <div className="navbar bg-primary-content">
+        <div className="navbar-start font-bold text-3xl hover:opacity-80">
+          <Link to={"/"}>Course Management</Link>
+        </div>
+        <div className="navbar-end">
+          <ul className="menu menu-horizontal px-1">
+            <li className="text-primary">
+              <Link to={"/courses"}>Courses</Link>
+            </li>
+            <li className="text-secondary">
+              <Link to={"/students"}>Students</Link>
+            </li>
+            <li className="text-accent">
+              <Link to={"/instructors"}>Instructors</Link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="navbar-end">
-        <ul className="menu menu-horizontal px-1">
-          <li className="text-primary">
-            <a href="/courses">Courses</a>
-          </li>
-          <li className="text-secondary">
-            <a href="/students">Students</a>
-          </li>
-          <li className="text-accent">
-            <a href="/instructors">Instructors</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <Outlet />
+      <footer className="footer bg-neutral-content mt-auto">
+        <div className="flex items-center justify-items-center mx-auto">
+          <div className="footer-title text-neutral mx-auto p-16">
+            Copyright Justin Klitgaard | {new Date().getFullYear()}
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 
