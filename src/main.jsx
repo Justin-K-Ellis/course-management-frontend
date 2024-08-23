@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Index from "./pages/index.jsx";
+import Courses from "./pages/Courses.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "courses",
-        element: <p>Coursess coming soon.</p>,
+        element: <Courses />,
       },
       {
         path: "students",

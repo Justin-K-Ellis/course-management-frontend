@@ -21,7 +21,9 @@ const Layout = () => {
           </ul>
         </div>
       </div>
-      <Outlet />
+      <div className="mx-auto md:w-1/2 mt-4">
+        <Outlet />
+      </div>
       <footer className="footer bg-neutral-content mt-auto">
         <div className="flex items-center justify-items-center mx-auto">
           <div className="footer-title text-neutral mx-auto p-16">
