@@ -1,14 +1,16 @@
-const CourseRow = () => {
+import SmallButton from "./SmallButton";
+
+const CourseRow = ({ courseId, courseName, instructor }) => {
   return (
     <tr className="hover">
-      <th>1</th>
-      <td>Economics 101</td>
-      <td>Kent Klitgaard</td>
+      <th>{courseId}</th>
+      <td>{courseName}</td>
+      <td>{instructor}</td>
       <td>
-        <button className="btn btn-warning btn-xs">Del</button>
+        <SmallButton style="warning" text="Del" />
       </td>
       <td>
-        <button className="btn btn-accent btn-xs">Update</button>
+        <SmallButton style="accent" text="Update" />
       </td>
     </tr>
   );
