@@ -8,10 +8,10 @@ const InstructorRow = ({ instructorName }) => {
         <SmallButton style="primary" text="Info" />
       </td>
       <td>
-        <SmallButton style="warning" text="Del" />
+        <SmallButton style="accent" text="Update" />
       </td>
       <td>
-        <SmallButton style="accent" text="Update" />
+        <SmallButton style="warning" text="Del" />
       </td>
     </tr>
   );

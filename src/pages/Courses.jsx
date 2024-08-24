@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CourseRow from "../components/CourseRow";
 import PageTitle from "../components/PageTitle";
 
@@ -12,7 +13,6 @@ const Courses = () => {
       try {
         const response = await fetch("http://localhost:3000/courses");
         const data = await response.json();
-        console.log(data);
         setCoursesInfo(data);
       } catch (error) {
         console.log(error);
@@ -54,6 +54,11 @@ const Courses = () => {
             })}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center my-4">
+        <Link to={"/new-course"}>
+          <button className="btn btn-primary">Add Course</button>
+        </Link>
       </div>
     </>
   );

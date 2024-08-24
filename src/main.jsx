@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Index from "./pages/index.jsx";
 import Courses from "./pages/Courses.jsx";
+import NewCourse from "./pages/NewCourse.jsx";
 import Instructors from "./pages/Instructors.jsx";
 import "./index.css";
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "instructors",
         element: <Instructors />,
+      },
+      {
+        path: "new-course",
+        element: <NewCourse />,
       },
     ],
   },
