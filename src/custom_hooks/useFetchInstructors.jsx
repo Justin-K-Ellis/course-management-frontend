@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetchInstrucotrs = () => {
+const useFetchInstructors = () => {
   const [instructorList, setInstructorList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -26,4 +26,4 @@ const useFetchInstrucotrs = () => {
   return { instructorList, isLoading, isError };
 };
 
-export default useFetchInstrucotrs;
+export default useFetchInstructors;

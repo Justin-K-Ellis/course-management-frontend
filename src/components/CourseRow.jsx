@@ -1,34 +1,38 @@
 import SmallButton from "./SmallButton";
 import { deleteCourse } from "../crud_services/coursesCrud";
+import { Link } from "react-router-dom";
 
 const CourseRow = ({
   courseId,
   courseName,
-  instructor,
+  instructorName,
+  instructorId,
   coursesInfo,
   setCoursesInfo,
 }) => {
   const handleDelete = (courseId) => {
-    deleteCourse(courseId);
-    // console.log(`${courseId} deleted!`);
-    // console.log(typeof coursesInfo, "Course list:", coursesInfo);
-
-    const newCourseList = coursesInfo.filter(
-      (course) => course.id !== courseId
-    );
-    setCoursesInfo(newCourseList);
+    const answer = confirm("Are you sure you want to delete this course?");
+    if (answer) {
+      deleteCourse(courseId);
+      const newCourseList = coursesInfo.filter(
+        (course) => course.id !== courseId
+      );
+      setCoursesInfo(newCourseList);
+    }
   };
 
   return (
     <tr className="hover">
       <th>{courseId}</th>
       <td>{courseName}</td>
-      <td>{instructor}</td>
+      <td>{instructorName}</td>
       <td onClick={() => handleDelete(courseId)}>
-        <SmallButton style="warning" text="Del" />
+        <SmallButton style="warning" text="Del" onClick />
       </td>
       <td>
-        <SmallButton style="accent" text="Update" />
+        <Link to={`../update-course/${courseId}/${courseName}`}>
+          <SmallButton style="accent" text="Update" />
+        </Link>
       </td>
     </tr>
   );

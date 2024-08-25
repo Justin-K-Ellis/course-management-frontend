@@ -1,9 +1,9 @@
 import PageTitle from "../components/PageTitle";
 import InstructorRow from "../components/InstructorRow";
-import useFetchInstrucotrs from "../custom_hooks/useFetchInstructors";
+import useFetchInstructors from "../custom_hooks/useFetchInstructors";
 
 const Instructors = () => {
-  const { instructorList, isLoading, isError } = useFetchInstrucotrs();
+  const { instructorList, isLoading, isError } = useFetchInstructors();
 
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>An error occurred.</div>;
@@ -22,7 +22,7 @@ const Instructors = () => {
             </tr>
           </thead>
           <tbody>
-            {instructorList.map((inst) => {
+            {instructorList?.map((inst) => {
               return (
                 <InstructorRow key={inst.id} instructorName={inst.inst_name} />
               );

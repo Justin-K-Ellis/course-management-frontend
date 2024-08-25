@@ -41,7 +41,7 @@ const NewCourse = () => {
   if (instructorsLoading) return <p>Loading</p>;
 
   return (
-    <>
+    <main>
       <PageTitle text="Add a Course" />
       <div className="shadow-md rounded-md p-8">
         <form
@@ -84,7 +84,7 @@ const NewCourse = () => {
           </button>
         </form>
       </div>
-    </>
+    </main>
   );
 };
 

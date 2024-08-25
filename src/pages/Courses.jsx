@@ -26,9 +26,10 @@ const Courses = () => {
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <p>An error occured.</p>;
+  console.log(coursesInfo);
 
   return (
-    <>
+    <main>
       <PageTitle text="Courses" />
       <div className="overflow-x-auto shadow-md rounded-md">
         <table className="table">
@@ -48,7 +49,8 @@ const Courses = () => {
                   key={course.id}
                   courseId={course.id}
                   courseName={course.course_name}
-                  instructor={course.inst_name}
+                  instructorName={course.inst_name}
+                  instructorId={course.instructor_id}
                   coursesInfo={coursesInfo}
                   setCoursesInfo={setCoursesInfo}
                 />
@@ -62,7 +64,7 @@ const Courses = () => {
           <button className="btn btn-primary">Add Course</button>
         </Link>
       </div>
-    </>
+    </main>
   );
 };
 

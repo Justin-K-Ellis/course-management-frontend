@@ -5,7 +5,9 @@ import App from "./App.jsx";
 import Index from "./pages/index.jsx";
 import Courses from "./pages/Courses.jsx";
 import NewCourse from "./pages/NewCourse.jsx";
+import UpdateCourse from "./pages/UpdateCourse.jsx";
 import Instructors from "./pages/Instructors.jsx";
+import UpdateInstructor from "./pages/UpdateInstructor.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "new-course",
         element: <NewCourse />,
+      },
+      {
+        path: "update-course/:id/:course",
+        element: <UpdateCourse />,
+      },
+      {
+        path: "update-instructor/:id",
+        element: <UpdateInstructor />,
       },
     ],
   },
