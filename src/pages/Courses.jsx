@@ -49,6 +49,8 @@ const Courses = () => {
                   courseId={course.id}
                   courseName={course.course_name}
                   instructor={course.inst_name}
+                  coursesInfo={coursesInfo}
+                  setCoursesInfo={setCoursesInfo}
                 />
               );
             })}

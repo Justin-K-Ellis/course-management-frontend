@@ -1,10 +1,10 @@
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3000";
 
-const post = (newCourse, instructor) => {
-  console.log("Axios function:", newCourse, instructor);
+const postCourse = (newCourse, instructor) => {
+  // console.log("Axios function:", newCourse, instructor);
 
-  const url = "/postcourse";
+  const url = "/courses/post";
   axios
     .post(url, {
       course_name: newCourse,
@@ -18,4 +18,16 @@ const post = (newCourse, instructor) => {
     });
 };
 
-export { post };
+const deleteCourse = (courseId) => {
+  const url = `/courses/delete/${courseId}`;
+  axios
+    .delete(url)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export { postCourse, deleteCourse };

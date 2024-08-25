@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import PageTitle from "../components/PageTitle";
-import { post } from "../crud_services/coursesCrud";
+import { postCourse } from "../crud_services/coursesCrud";
 
 const NewCourse = () => {
   const [newCourse, setNewCourse] = useState("");
@@ -29,7 +29,7 @@ const NewCourse = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    post(newCourse, instructorName);
+    postCourse(newCourse, instructorName);
     console.log(`${newCourse} and ${instructorName} submitted!`);
     navigate("/courses");
   };
