@@ -1,35 +1,15 @@
-import { useState, useEffect } from "react";
 import PageTitle from "../components/PageTitle";
 import InstructorRow from "../components/InstructorRow";
+import useFetchInstrucotrs from "../custom_hooks/useFetchInstructors";
 
 const Instructors = () => {
-  const [instructorsInfo, setInstructorsInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getInstructors = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/instructors");
-        const data = await response.json();
-        console.log(data);
-
-        setInstructorsInfo(data);
-      } catch (error) {
-        console.log(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getInstructors();
-  }, []);
+  const { instructorList, isLoading, isError } = useFetchInstrucotrs();
 
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>An error occurred.</div>;
 
   return (
-    <>
+    <main>
       <PageTitle text="Instructors" />
       <div className="overflow-x-auto shadow-md rounded-md">
         <table className="table">
@@ -42,7 +22,7 @@ const Instructors = () => {
             </tr>
           </thead>
           <tbody>
-            {instructorsInfo.map((inst) => {
+            {instructorList.map((inst) => {
               return (
                 <InstructorRow key={inst.id} instructorName={inst.inst_name} />
               );
@@ -50,7 +30,7 @@ const Instructors = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </main>
   );
 };
 
