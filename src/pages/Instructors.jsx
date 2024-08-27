@@ -24,7 +24,11 @@ const Instructors = () => {
           <tbody>
             {instructorList?.map((inst) => {
               return (
-                <InstructorRow key={inst.id} instructorName={inst.inst_name} />
+                <InstructorRow
+                  key={inst.id}
+                  instructorName={inst.inst_name}
+                  instructorId={inst.id}
+                />
               );
             })}
           </tbody>
