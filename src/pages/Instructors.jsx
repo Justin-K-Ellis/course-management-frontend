@@ -1,9 +1,11 @@
 import PageTitle from "../components/PageTitle";
 import InstructorRow from "../components/InstructorRow";
 import useFetchInstructors from "../custom_hooks/useFetchInstructors";
+import { Link } from "react-router-dom";
 
 const Instructors = () => {
-  const { instructorList, isLoading, isError } = useFetchInstructors();
+  const { instructorList, setInstructorList, isLoading, isError } =
+    useFetchInstructors();
 
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>An error occurred.</div>;
@@ -28,11 +30,18 @@ const Instructors = () => {
                   key={inst.id}
                   instructorName={inst.inst_name}
                   instructorId={inst.id}
+                  instructorList={instructorList}
+                  setInstructorList={setInstructorList}
                 />
               );
             })}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center my-4">
+        <Link to={"/new-instructor"}>
+          <button className="btn btn-primary">Register Instructor</button>
+        </Link>
       </div>
     </main>
   );

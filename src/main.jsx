@@ -7,7 +7,9 @@ import Courses from "./pages/Courses.jsx";
 import NewCourse from "./pages/NewCourse.jsx";
 import UpdateCourse from "./pages/UpdateCourse.jsx";
 import Instructors from "./pages/Instructors.jsx";
+import NewInstructor from "./pages/NewInstructor.jsx";
 import UpdateInstructor from "./pages/UpdateInstructor.jsx";
+import InstructorDetails from "./pages/InstructorDetails.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -40,8 +42,16 @@ const router = createBrowserRouter([
         element: <UpdateCourse />,
       },
       {
+        path: "new-instructor",
+        element: <NewInstructor />,
+      },
+      {
         path: "update-instructor/:id",
         element: <UpdateInstructor />,
+      },
+      {
+        path: "instructor-details/:id",
+        element: <InstructorDetails />,
       },
     ],
   },

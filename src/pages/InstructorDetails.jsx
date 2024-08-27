@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { deleteInstructor } from "../crud_services/instructorsCrud";
 
 const InstructorDetails = () => {
   const { id } = useParams();
@@ -22,6 +23,15 @@ const InstructorDetails = () => {
     getInstructorDetails(id);
   }, []);
 
+  const handleDelete = (instructorId) => {
+    const reply = confirm(
+      "Are you sure you want to delete this instructor? Their courses will no longer be accessable."
+    );
+    if (reply) {
+      deleteInstructor(instructorId);
+    }
+  };
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -39,8 +49,15 @@ const InstructorDetails = () => {
           </ul>
         </div>
         <div className="card-actions justify-end">
-          <a className="btn btn-primary update-btn">Update</a>
-          <a className="btn btn-warning delete-btn">Delete</a>
+          <Link to={`../update-instructor/${id}`}>
+            <button className="btn btn-primary update-btn">Update</button>
+          </Link>
+          <button
+            className="btn btn-warning delete-btn"
+            onClick={() => handleDelete(instructorDetails[0].id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </main>

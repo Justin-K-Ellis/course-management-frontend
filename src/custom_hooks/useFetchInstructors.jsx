@@ -10,8 +10,6 @@ const useFetchInstructors = () => {
       try {
         const response = await fetch("http://localhost:3000/instructors");
         const data = await response.json();
-        console.log(data);
-
         setInstructorList(data);
       } catch (error) {
         console.log(error);

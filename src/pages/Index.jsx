@@ -10,15 +10,17 @@ const Index = () => {
             <p className="py-6">
               Here you can manage courses, students, and instructors.
             </p>
-            <button className="btn btn-primary">
-              <Link to={"/courses"}>Courses</Link>
-            </button>
-            <button className="btn btn-secondary">
-              <Link to={"/students"}>Students</Link>
-            </button>
-            <button className="btn btn-accent">
-              <Link to={"/instructors"}>Instructors</Link>
-            </button>
+            <div className="flex flex-row gap-2 justify-center">
+              <button className="btn btn-primary">
+                <Link to={"/courses"}>Courses</Link>
+              </button>
+              <button className="btn btn-secondary">
+                <Link to={"/students"}>Students</Link>
+              </button>
+              <button className="btn btn-accent">
+                <Link to={"/instructors"}>Instructors</Link>
+              </button>
+            </div>
           </div>
         </div>
       </div>
