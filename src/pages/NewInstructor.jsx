@@ -38,7 +38,7 @@ const NewCourse = () => {
             required
           />
           <button type="submit" className="btn btn-primary">
-            Add
+            Register
           </button>
         </form>
       </div>

@@ -17,6 +17,20 @@ const postStudent = (newName) => {
 };
 
 // Update
+const putNewName = (newName, studentId) => {
+  const url = "/students/new-name";
+  axios
+    .put(url, {
+      newName,
+      studentId,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 // Delete
 const deleteStudent = (id) => {
@@ -31,4 +45,4 @@ const deleteStudent = (id) => {
     });
 };
 
-export { postStudent, deleteStudent };
+export { postStudent, putNewName, deleteStudent };
