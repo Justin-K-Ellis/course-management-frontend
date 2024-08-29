@@ -2,6 +2,7 @@ import PageTitle from "../components/PageTitle";
 import InstructorRow from "../components/InstructorRow";
 import useFetchInstructors from "../custom_hooks/useFetchInstructors";
 import { Link } from "react-router-dom";
+import Wrapper from "../layouts/Wrapper";
 
 const Instructors = () => {
   const { instructorList, setInstructorList, isLoading, isError } =
@@ -13,7 +14,7 @@ const Instructors = () => {
   return (
     <main>
       <PageTitle text="Instructors" />
-      <div className="overflow-x-auto shadow-md rounded-md">
+      <Wrapper>
         <table className="table">
           <thead>
             <tr className="bg-primary-content">
@@ -37,7 +38,7 @@ const Instructors = () => {
             })}
           </tbody>
         </table>
-      </div>
+      </Wrapper>
       <div className="flex justify-center my-4">
         <Link to={"/new-instructor"}>
           <button className="btn btn-primary">Register Instructor</button>

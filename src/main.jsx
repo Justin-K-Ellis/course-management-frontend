@@ -10,6 +10,9 @@ import Instructors from "./pages/Instructors.jsx";
 import NewInstructor from "./pages/NewInstructor.jsx";
 import UpdateInstructor from "./pages/UpdateInstructor.jsx";
 import InstructorDetails from "./pages/InstructorDetails.jsx";
+import Students from "./pages/Students.jsx";
+import StudentInfo from "./pages/StudentInfo.jsx";
+import NewStudent from "./pages/NewStudent.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -27,7 +30,15 @@ const router = createBrowserRouter([
       },
       {
         path: "students",
-        element: <p>Students coming soon.</p>,
+        element: <Students />,
+      },
+      {
+        path: "student-details/:studentId",
+        element: <StudentInfo />,
+      },
+      {
+        path: "new-student",
+        element: <NewStudent />,
       },
       {
         path: "instructors",

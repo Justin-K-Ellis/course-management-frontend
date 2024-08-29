@@ -15,12 +15,12 @@ const postInstructor = (newInstructor) => {
     });
 };
 
-const putInstructor = (courseId, newCourse, newInstructor) => {
-  const url = `/courses/update/${courseId}`;
+const putInstructor = (instructorId, newName) => {
+  const url = "/instructors/update";
   axios
     .put(url, {
-      newCourseName: newCourse,
-      newInstructorName: newInstructor,
+      instructorId,
+      newName,
     })
     .then((response) => {
       console.log(response);

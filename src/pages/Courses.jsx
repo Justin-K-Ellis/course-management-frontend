@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CourseRow from "../components/CourseRow";
 import PageTitle from "../components/PageTitle";
+import Wrapper from "../layouts/Wrapper";
 
 const Courses = () => {
   const [coursesInfo, setCoursesInfo] = useState(null);
@@ -31,34 +32,36 @@ const Courses = () => {
   return (
     <main>
       <PageTitle text="Courses" />
-      <div className="overflow-x-auto shadow-md rounded-md">
-        <table className="table">
-          <thead>
-            <tr className="bg-primary-content">
-              <th>Course ID</th>
-              <th>Name</th>
-              <th>Instructor</th>
-              <th>Delete</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {coursesInfo?.map((course) => {
-              return (
-                <CourseRow
-                  key={course.id}
-                  courseId={course.id}
-                  courseName={course.course_name}
-                  instructorName={course.inst_name}
-                  instructorId={course.instructor_id}
-                  coursesInfo={coursesInfo}
-                  setCoursesInfo={setCoursesInfo}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <Wrapper>
+        <main>
+          <table className="table">
+            <thead>
+              <tr className="bg-primary-content">
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Delete</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {coursesInfo?.map((course) => {
+                return (
+                  <CourseRow
+                    key={course.id}
+                    courseId={course.id}
+                    courseName={course.course_name}
+                    instructorName={course.inst_name}
+                    instructorId={course.instructor_id}
+                    coursesInfo={coursesInfo}
+                    setCoursesInfo={setCoursesInfo}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </main>
+      </Wrapper>
       <div className="flex justify-center my-4">
         <Link to={"/new-course"}>
           <button className="btn btn-primary">Add Course</button>

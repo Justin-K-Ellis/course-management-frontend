@@ -21,7 +21,7 @@ const useFetchInstructors = () => {
     getInstructors();
   }, []);
 
-  return { instructorList, isLoading, isError };
+  return { instructorList, setInstructorList, isLoading, isError };
 };
 
 export default useFetchInstructors;

@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { deleteInstructor } from "../crud_services/instructorsCrud";
 
-const InstructorRow = ({ instructorName, instructorId }) => {
+const InstructorRow = ({
+  instructorName,
+  instructorId,
+  instructorList,
+  setInstructorList,
+}) => {
   const [instructorDetails, setInstructorDetails] = useState([]);
 
   useEffect(() => {
@@ -24,6 +29,10 @@ const InstructorRow = ({ instructorName, instructorId }) => {
     );
     if (reply) {
       deleteInstructor(instructorId);
+      const newInstructorList = instructorList.filter(
+        (id) => id !== instructorId
+      );
+      setInstructorList(newInstructorList);
     }
   };
 
@@ -36,7 +45,9 @@ const InstructorRow = ({ instructorName, instructorId }) => {
         </Link>
       </td>
       <td>
-        <SmallButton style="accent" text="Update" />
+        <Link to={`../update-instructor/${instructorId}`}>
+          <SmallButton style="accent" text="Update" />
+        </Link>
       </td>
       <td onClick={() => handleDelete(instructorId)}>
         <SmallButton style="warning" text="Del" />
