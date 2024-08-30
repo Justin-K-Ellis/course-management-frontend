@@ -29,7 +29,7 @@ const StudentRow = ({
         </Link>
       </td>
       <td>
-        <Link to={`../update-student/${studentId}`}>
+        <Link to={`../update-student/${studentId}/${studentName}`}>
           <SmallButton style="accent" text="Update" />
         </Link>
       </td>
