@@ -24,7 +24,6 @@ const Students = () => {
     };
     getStudentList();
   }, []);
-  studentList && console.log(studentList);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong</p>;
@@ -39,8 +38,8 @@ const Students = () => {
               <th>Student ID</th>
               <th>Name</th>
               <th>Info</th>
-              <th>Delete</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

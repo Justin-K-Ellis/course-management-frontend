@@ -27,7 +27,6 @@ const Courses = () => {
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <p>An error occured.</p>;
-  console.log(coursesInfo);
 
   return (
     <main>

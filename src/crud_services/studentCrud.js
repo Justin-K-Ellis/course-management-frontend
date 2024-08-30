@@ -32,6 +32,18 @@ const putNewName = (newName, studentId) => {
     });
 };
 
+const postNewCourse = (courseId, studentId) => {
+  const url = "/students/register-course";
+  axios
+    .post(url, {
+      courseId,
+      studentId,
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 // Delete
 const deleteStudent = (id) => {
   const url = `/students/delete/${id}`;
@@ -45,4 +57,4 @@ const deleteStudent = (id) => {
     });
 };
 
-export { postStudent, putNewName, deleteStudent };
+export { postStudent, putNewName, postNewCourse, deleteStudent };

@@ -5,12 +5,17 @@ import { postStudent } from "../crud_services/studentCrud";
 import { useNavigate } from "react-router-dom";
 
 const NewStudent = () => {
-  const [newStudent, setNewStudent] = useState("");
   const navigate = useNavigate();
+  const [newStudent, setNewStudent] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     postStudent(newStudent);
+    // TODO: It doesn't make sense to post the new course here since the student name
+    // isn't in the DB yet! First add just the new name to the DB, then navigate the user
+    // to the student Update page (also todo) and have them register a course there.
+    // (BTW, the router works).
+
     navigate("../students");
   };
 

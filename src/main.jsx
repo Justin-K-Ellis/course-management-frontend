@@ -33,12 +33,16 @@ const router = createBrowserRouter([
         element: <Students />,
       },
       {
-        path: "student-details/:studentId",
+        path: "student-details/:studentId/:studentName",
         element: <StudentInfo />,
       },
       {
         path: "new-student",
         element: <NewStudent />,
+      },
+      {
+        path: "update-student/:studentId",
+        element: <p>Update student</p>,
       },
       {
         path: "instructors",

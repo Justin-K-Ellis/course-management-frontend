@@ -24,12 +24,12 @@ const StudentRow = ({
       <td>{studentId}</td>
       <td>{studentName}</td>
       <td>
-        <Link to={`../student-details/${studentId}`}>
+        <Link to={`../student-details/${studentId}/${studentName}`}>
           <SmallButton style="primary" text="Info" />
         </Link>
       </td>
       <td>
-        <Link to={"../students"}>
+        <Link to={`../update-student/${studentId}`}>
           <SmallButton style="accent" text="Update" />
         </Link>
       </td>
