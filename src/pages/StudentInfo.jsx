@@ -25,14 +25,14 @@ const StudentInfo = () => {
   }, []);
 
   registeredCourses && console.log(registeredCourses);
-  const noCourses = "This student is not taking and courses.";
+  const noCourses = "This student is not taking any courses.";
 
   return (
     <main>
       <PageTitle text="Student Info" />
       <InfoCard
         name={studentName}
-        updateLink={`../update-student/${studentId}`}
+        updateLink={`../update-student/${studentId}/${studentName}`}
         deleteFunction={deleteStudent}
         deleteTarget={studentId}
         deleteWarning="Are you sure you want to delete this student?"

@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
 import { useParams } from "react-router-dom";
+import { putNewName, postNewCourse } from "../crud_services/studentCrud";
+import { useNavigate } from "react-router-dom";
 
 const UpdateStudent = () => {
   const { studentId, studentName } = useParams();
   const [newName, setNewName] = useState(studentName);
+  const [selectedCourse, setSelectedCourse] = useState("");
   const [courseList, setCourseList] = useState([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCourse = async () => {
@@ -25,6 +29,26 @@ const UpdateStudent = () => {
     getCourse();
   }, []);
 
+  // Build a course name to course id hash to send id to server.
+  const courseHash = new Map();
+  for (let course of courseList) {
+    courseHash.set(course.course_name, course.id);
+  }
+  console.log(courseHash);
+
+  const handleNameSubmit = (event) => {
+    event.preventDefault();
+    putNewName(newName, studentId);
+    navigate("../students");
+  };
+
+  const handleCourseSubmit = (event) => {
+    event.preventDefault();
+    const courseId = courseHash.get(selectedCourse);
+    postNewCourse(courseId, studentId);
+    navigate("../students");
+  };
+
   if (coursesLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong.</p>;
 
@@ -34,7 +58,10 @@ const UpdateStudent = () => {
       <Wrapper>
         <div className="flex flex-col gap-2">
           {/* Form for updating name. */}
-          <form className="flex flex-col justify-center items-center gap-2 p-2">
+          <form
+            className="flex flex-col justify-center items-center gap-2 p-2"
+            onSubmit={handleNameSubmit}
+          >
             <label htmlFor="update-name" className="font-bold">
               Update name
             </label>
@@ -53,9 +80,15 @@ const UpdateStudent = () => {
           </form>
           <hr />
           {/* Form for adding a course. */}
-          <form className="flex flex-col justify-center items-center gap-2 p-2">
+          <form
+            className="flex flex-col justify-center items-center gap-2 p-2"
+            onSubmit={handleCourseSubmit}
+          >
             <p className="font-bold">Register a course</p>
-            <select className="select select-bordered w-full max-w-xs">
+            <select
+              className="select select-bordered w-full max-w-xs"
+              onChange={(event) => setSelectedCourse(event.target.value)}
+            >
               <option disabled selected>
                 Select a course
               </option>
