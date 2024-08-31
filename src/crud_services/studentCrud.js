@@ -54,4 +54,26 @@ const deleteStudent = (id) => {
     });
 };
 
-export { postStudent, putNewName, postNewCourse, deleteStudent };
+const deregisterCourse = (courseId, studentId) => {
+  const url = `/students/deregister/${courseId}/${studentId}`;
+
+  axios
+    .delete(url, {
+      courseId,
+      studentId,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export {
+  postStudent,
+  putNewName,
+  postNewCourse,
+  deleteStudent,
+  deregisterCourse,
+};

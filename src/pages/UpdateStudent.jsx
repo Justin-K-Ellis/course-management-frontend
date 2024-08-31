@@ -4,14 +4,22 @@ import Wrapper from "../layouts/Wrapper";
 import { useParams } from "react-router-dom";
 import { putNewName, postNewCourse } from "../crud_services/studentCrud";
 import { useNavigate } from "react-router-dom";
+import { deregisterCourse } from "../crud_services/studentCrud";
 
 const UpdateStudent = () => {
   const { studentId, studentName } = useParams();
   const [newName, setNewName] = useState(studentName);
+
   const [selectedCourse, setSelectedCourse] = useState("");
+
   const [courseList, setCourseList] = useState([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isCoursesError, setIsCoursesError] = useState(false);
+
+  const [registeredCourses, setRegisteredCourses] = useState([]);
+  const [registeredLoading, setRegisteredLoading] = useState(true);
+  const [isRegisteredError, setIsRegisteredError] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,10 +31,26 @@ const UpdateStudent = () => {
         setCoursesLoading(false);
       } catch (error) {
         console.log(error);
-        setIsError(true);
+        setIsCoursesError(true);
       }
     };
     getCourse();
+  }, []);
+
+  useEffect(() => {
+    const getRegisteredCourses = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/students/all-courses/${studentId}`
+        );
+        const data = await response.json();
+        setRegisteredCourses(data);
+      } catch (error) {
+        console.log(error);
+        setIsRegisteredError(true);
+      }
+    };
+    getRegisteredCourses();
   }, []);
 
   // Build a course name to course id hash to send id to server.
@@ -49,8 +73,19 @@ const UpdateStudent = () => {
     navigate("../students");
   };
 
+  const handleDeregister = (courseId) => {
+    const answer = confirm("Are you sure you want to deregister this course?");
+    if (answer) {
+      deregisterCourse(courseId, studentId);
+      const newRegisteredCourses = registeredCourses.filter(
+        (course) => course.id !== courseId
+      );
+      setRegisteredCourses(newRegisteredCourses);
+    }
+  };
+
   if (coursesLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something went wrong.</p>;
+  if (isCoursesError) return <p>Something went wrong.</p>;
 
   return (
     <main>
@@ -100,6 +135,35 @@ const UpdateStudent = () => {
               Submit
             </button>
           </form>
+          <hr />
+          <div className="p-2">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Deregister</th>
+                </tr>
+              </thead>
+              <tbody>
+                {registeredCourses.map((course) => {
+                  return (
+                    <tr key={course.id} className="hover:bg-base-200">
+                      <td>{course.course_name}</td>
+                      <td>
+                        <button
+                          className="btn btn-xs btn-warning"
+                          onClick={() => handleDeregister(course.id)}
+                        >
+                          Deregister
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </Wrapper>
     </main>
