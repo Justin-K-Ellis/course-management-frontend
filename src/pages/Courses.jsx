@@ -36,11 +36,11 @@ const Courses = () => {
           <table className="table">
             <thead>
               <tr className="bg-primary-content">
-                <th>Course ID</th>
+                {/* <th>Course ID</th> */}
                 <th>Name</th>
                 <th>Instructor</th>
-                <th>Delete</th>
                 <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -61,9 +61,12 @@ const Courses = () => {
           </table>
         </main>
       </Wrapper>
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center gap-2 my-4">
         <Link to={"/new-course"}>
           <button className="btn btn-primary">Add Course</button>
+        </Link>
+        <Link to={"/courses-students"}>
+          <button className="btn btn-accent">All Courses & Students</button>
         </Link>
       </div>
     </main>

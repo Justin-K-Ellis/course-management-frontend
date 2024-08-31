@@ -6,6 +6,7 @@ import Index from "./pages/index.jsx";
 import Courses from "./pages/Courses.jsx";
 import NewCourse from "./pages/NewCourse.jsx";
 import UpdateCourse from "./pages/UpdateCourse.jsx";
+import CoursesStudents from "./pages/CoursesStudents.jsx";
 import Instructors from "./pages/Instructors.jsx";
 import NewInstructor from "./pages/NewInstructor.jsx";
 import UpdateInstructor from "./pages/UpdateInstructor.jsx";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "courses",
         element: <Courses />,
+      },
+      {
+        path: "courses-students",
+        element: <CoursesStudents />,
       },
       {
         path: "students",

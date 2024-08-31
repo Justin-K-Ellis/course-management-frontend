@@ -82,6 +82,7 @@ const UpdateStudent = () => {
       );
       setRegisteredCourses(newRegisteredCourses);
     }
+    navigate(-1);
   };
 
   if (coursesLoading) return <p>Loading...</p>;

@@ -21,7 +21,7 @@ const StudentRow = ({
 
   return (
     <tr className="hover">
-      <td>{studentId}</td>
+      {/* <td>{studentId}</td> */}
       <td>{studentName}</td>
       <td>
         <Link to={`../student-details/${studentId}/${studentName}`}>

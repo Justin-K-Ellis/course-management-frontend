@@ -23,16 +23,16 @@ const CourseRow = ({
 
   return (
     <tr className="hover">
-      <th>{courseId}</th>
       <td>{courseName}</td>
       <td>{instructorName}</td>
-      <td onClick={() => handleDelete(courseId)}>
-        <SmallButton style="warning" text="Del" onClick />
-      </td>
+
       <td>
         <Link to={`../update-course/${courseId}/${courseName}`}>
           <SmallButton style="accent" text="Update" />
         </Link>
+      </td>
+      <td onClick={() => handleDelete(courseId)}>
+        <SmallButton style="warning" text="Del" onClick />
       </td>
     </tr>
   );

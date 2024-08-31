@@ -35,7 +35,7 @@ const Students = () => {
         <table className="table">
           <thead>
             <tr className="bg-primary-content">
-              <th>Student ID</th>
+              {/* <th>Student ID</th> */}
               <th>Name</th>
               <th>Info</th>
               <th>Update</th>
