@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { deleteInstructor } from "../crud_services/instructorsCrud";
 import InfoCard from "../components/InfoCard";
+import { BaseUrlContext } from "../../BaseUrlContext";
 
 const InstructorDetails = () => {
   const { id } = useParams();
   const [instructorDetails, setInstructorDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getInstructorDetails = async (instructorId) => {
       try {
-        const url = `http://localhost:3000/instructors/courses/${instructorId}`;
+        const url = `${baseUrl}/instructors/courses/${instructorId}`;
         const response = await fetch(url);
         const data = await response.json();
         setInstructorDetails(data);

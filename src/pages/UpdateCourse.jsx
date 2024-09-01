@@ -15,7 +15,6 @@ const UpdateCourse = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`${newCourse} taught by ${newInstructor} submitted!`);
     putCourse(id, newCourse, newInstructor);
     navigate("../courses");
   };

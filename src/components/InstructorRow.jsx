@@ -1,8 +1,8 @@
 import SmallButton from "./SmallButton";
-// import InstructorInfo from "./InstructorInfo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { deleteInstructor } from "../crud_services/instructorsCrud";
+import { BaseUrlContext } from "../../BaseUrlContext";
 
 const InstructorRow = ({
   instructorName,
@@ -11,10 +11,11 @@ const InstructorRow = ({
   setInstructorList,
 }) => {
   const [instructorDetails, setInstructorDetails] = useState([]);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getInstructorDetails = async (instructorId) => {
-      const url = `http://localhost:3000/instructors/courses/${instructorId}`;
+      const url = `${baseUrl}/instructors/courses/${instructorId}`;
       const response = await fetch(url);
       const data = await response.json();
       setInstructorDetails(data);

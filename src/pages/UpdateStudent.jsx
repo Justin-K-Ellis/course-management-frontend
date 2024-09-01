@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
 import { useParams } from "react-router-dom";
 import { putNewName, postNewCourse } from "../crud_services/studentCrud";
 import { useNavigate } from "react-router-dom";
 import { deregisterCourse } from "../crud_services/studentCrud";
+import { BaseUrlContext } from "../../BaseUrlContext";
 
 const UpdateStudent = () => {
   const { studentId, studentName } = useParams();
@@ -20,18 +21,20 @@ const UpdateStudent = () => {
   const [registeredLoading, setRegisteredLoading] = useState(true);
   const [isRegisteredError, setIsRegisteredError] = useState(false);
 
+  const baseUrl = useContext(BaseUrlContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getCourse = async () => {
       try {
-        const response = await fetch("http://localhost:3000/courses");
+        const response = await fetch(`${baseUrl}/courses`);
         const data = await response.json();
         setCourseList(data);
-        setCoursesLoading(false);
       } catch (error) {
         console.log(error);
         setIsCoursesError(true);
+      } finally {
+        setCoursesLoading(false);
       }
     };
     getCourse();
@@ -48,17 +51,18 @@ const UpdateStudent = () => {
       } catch (error) {
         console.log(error);
         setIsRegisteredError(true);
+      } finally {
+        setRegisteredLoading(false);
       }
     };
     getRegisteredCourses();
   }, []);
 
-  // Build a course name to course id hash to send id to server.
+  // Build a course-name to course-id hash to send id to server.
   const courseHash = new Map();
   for (let course of courseList) {
     courseHash.set(course.course_name, course.id);
   }
-  console.log(courseHash);
 
   const handleNameSubmit = (event) => {
     event.preventDefault();
@@ -87,6 +91,8 @@ const UpdateStudent = () => {
 
   if (coursesLoading) return <p>Loading...</p>;
   if (isCoursesError) return <p>Something went wrong.</p>;
+  if (registeredLoading) return <p>Loading...</p>;
+  if (isRegisteredError) return <p>Something went wrong.</p>;
 
   return (
     <main>
@@ -139,7 +145,6 @@ const UpdateStudent = () => {
           <hr />
           <div className="p-2">
             <table className="table">
-              {/* head */}
               <thead>
                 <tr>
                   <th>Course</th>

@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
-import { nanoid } from "nanoid";
+import { BaseUrlContext } from "../../BaseUrlContext";
+import { useContext } from "react";
 
 const CoursesStudents = () => {
   const [coursesStudents, setCoursesStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getCoursesStudents = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/courses/courses-students"
-        );
+        const response = await fetch(`${baseUrl}/courses/courses-students`);
         const data = await response.json();
         setCoursesStudents(data);
         setIsLoading(false);

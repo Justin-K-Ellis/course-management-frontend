@@ -8,9 +8,6 @@ const postStudent = (newName) => {
     .post(url, {
       name: newName,
     })
-    .then((response) => {
-      console.log(response);
-    })
     .catch((error) => {
       console.log(error);
     });
@@ -44,14 +41,9 @@ const postNewCourse = (courseId, studentId) => {
 // Delete
 const deleteStudent = (id) => {
   const url = `/students/delete/${id}`;
-  axios
-    .delete(url)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  axios.delete(url).catch((error) => {
+    console.log(error);
+  });
 };
 
 const deregisterCourse = (courseId, studentId) => {
@@ -61,9 +53,6 @@ const deregisterCourse = (courseId, studentId) => {
     .delete(url, {
       courseId,
       studentId,
-    })
-    .then((response) => {
-      console.log(response);
     })
     .catch((error) => {
       console.log(error);

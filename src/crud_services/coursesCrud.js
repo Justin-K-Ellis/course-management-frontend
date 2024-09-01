@@ -8,9 +8,6 @@ const postCourse = (newCourse, instructor) => {
       course_name: newCourse,
       instructorName: instructor,
     })
-    .then((response) => {
-      console.log(response);
-    })
     .catch((error) => {
       console.log(error);
     });
@@ -23,9 +20,6 @@ const putCourse = (courseId, newCourse, newInstructor) => {
       newCourseName: newCourse,
       newInstructorName: newInstructor,
     })
-    .then((response) => {
-      console.log(response);
-    })
     .catch((error) => {
       console.log(error);
     });
@@ -33,14 +27,9 @@ const putCourse = (courseId, newCourse, newInstructor) => {
 
 const deleteCourse = (courseId) => {
   const url = `/courses/delete/${courseId}`;
-  axios
-    .delete(url)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  axios.delete(url).catch((error) => {
+    console.log(error);
+  });
 };
 
 export { postCourse, putCourse, deleteCourse };

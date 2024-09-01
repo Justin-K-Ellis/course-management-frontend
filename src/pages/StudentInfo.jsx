@@ -1,19 +1,20 @@
 import PageTitle from "../components/PageTitle";
-// import Wrapper from "../layouts/Wrapper";
+import { BaseUrlContext } from "../../BaseUrlContext";
 import InfoCard from "../components/InfoCard";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { deleteStudent } from "../crud_services/studentCrud";
 
 const StudentInfo = () => {
   const { studentId, studentName } = useParams();
   const [registeredCourses, setRegisteredCourses] = useState([]);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getCourses = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/students/all-courses/${studentId}`
+          `${baseUrl}/students/all-courses/${studentId}`
         );
         const data = await response.json();
         setRegisteredCourses(data);

@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CourseRow from "../components/CourseRow";
 import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
+import { BaseUrlContext } from "../../BaseUrlContext";
 
 const Courses = () => {
   const [coursesInfo, setCoursesInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getCourses = async () => {
       try {
-        const response = await fetch("http://localhost:3000/courses");
+        const response = await fetch(`${baseUrl}/courses`);
         const data = await response.json();
         setCoursesInfo(data);
       } catch (error) {
@@ -36,7 +38,6 @@ const Courses = () => {
           <table className="table">
             <thead>
               <tr className="bg-primary-content">
-                {/* <th>Course ID</th> */}
                 <th>Name</th>
                 <th>Instructor</th>
                 <th>Update</th>

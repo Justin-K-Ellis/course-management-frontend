@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { BaseUrlContext } from "../../BaseUrlContext";
 import PageTitle from "../components/PageTitle";
 import { postCourse } from "../crud_services/coursesCrud";
 
@@ -9,13 +9,13 @@ const NewCourse = () => {
   const [instructorList, setInstructorList] = useState(null);
   const [instructorsLoading, setInstructorsLoading] = useState(true);
   const [instructorName, setInstructorName] = useState("");
-
+  const baseUrl = useContext(BaseUrlContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getInstructorList = async () => {
       try {
-        const response = await fetch("http://localhost:3000/instructors");
+        const response = await fetch(`${baseUrl}/instructors`);
         const data = await response.json();
         setInstructorList(data);
       } catch (error) {

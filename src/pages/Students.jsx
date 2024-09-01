@@ -1,18 +1,20 @@
 import PageTitle from "../components/PageTitle";
-import StudentRow from "../components/StudentRow"; // Use when ready
-import { useState, useEffect } from "react";
+import StudentRow from "../components/StudentRow";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Wrapper from "../layouts/Wrapper";
+import { BaseUrlContext } from "../../BaseUrlContext";
 
 const Students = () => {
   const [studentList, setStudentList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getStudentList = async () => {
       try {
-        const response = await fetch("http://localhost:3000/students");
+        const response = await fetch(`${baseUrl}/students`);
         const data = await response.json();
         setStudentList(data);
       } catch (error) {
@@ -35,7 +37,6 @@ const Students = () => {
         <table className="table">
           <thead>
             <tr className="bg-primary-content">
-              {/* <th>Student ID</th> */}
               <th>Name</th>
               <th>Info</th>
               <th>Update</th>
