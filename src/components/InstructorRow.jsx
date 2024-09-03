@@ -22,7 +22,6 @@ const InstructorRow = ({
     };
     getInstructorDetails(instructorId);
   }, []);
-  console.log(instructorDetails);
 
   const handleDelete = (instructorId) => {
     const reply = confirm(

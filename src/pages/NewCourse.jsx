@@ -30,7 +30,6 @@ const NewCourse = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     postCourse(newCourse, instructorName);
-    console.log(`${newCourse} and ${instructorName} submitted!`);
     navigate("/courses");
   };
 

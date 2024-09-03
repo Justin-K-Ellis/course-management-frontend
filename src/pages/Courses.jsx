@@ -25,7 +25,7 @@ const Courses = () => {
       }
     };
     getCourses();
-  }, []);
+  }, [coursesInfo]);
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <p>An error occured.</p>;
