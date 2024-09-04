@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import Index from "./pages/index.jsx";
+import Index from "./pages/Index.jsx";
 import Courses from "./pages/Courses.jsx";
 import NewCourse from "./pages/NewCourse.jsx";
 import UpdateCourse from "./pages/UpdateCourse.jsx";
