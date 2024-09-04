@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
+import { BaseUrlContext } from "../../BaseUrlContext";
+import { useContext } from "react";
 
 const useFetchInstructors = () => {
   const [instructorList, setInstructorList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
     const getInstructors = async () => {
       try {
-        const response = await fetch("http://localhost:3000/instructors");
+        const response = await fetch(`${baseUrl}/instructors`);
         const data = await response.json();
         setInstructorList(data);
       } catch (error) {
