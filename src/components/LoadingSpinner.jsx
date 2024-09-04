@@ -2,7 +2,7 @@ import { Grid } from "react-loader-spinner";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center items-center h-full bg-accent">
+    <div className="flex justify-center items-center h-full text-accent">
       <Grid
         visible={true}
         height="80"
