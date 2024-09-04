@@ -4,6 +4,8 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Wrapper from "../layouts/Wrapper";
 import { BaseUrlContext } from "../../BaseUrlContext";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const Students = () => {
   const [studentList, setStudentList] = useState([]);
@@ -27,8 +29,8 @@ const Students = () => {
     getStudentList();
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something went wrong</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>

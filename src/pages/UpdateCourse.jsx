@@ -4,6 +4,8 @@ import { useState } from "react";
 import useFetchInstructors from "../custom_hooks/useFetchInstructors";
 import { putCourse } from "../crud_services/coursesCrud";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const UpdateCourse = () => {
   const { id, course } = useParams();
@@ -21,8 +23,8 @@ const UpdateCourse = () => {
 
   console.log("Is error:", isError);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something went wrong.</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>

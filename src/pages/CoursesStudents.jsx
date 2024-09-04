@@ -4,6 +4,8 @@ import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
 import { BaseUrlContext } from "../../BaseUrlContext";
 import { useContext } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const CoursesStudents = () => {
   const [coursesStudents, setCoursesStudents] = useState([]);
@@ -26,8 +28,8 @@ const CoursesStudents = () => {
     getCoursesStudents();
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error...</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <>

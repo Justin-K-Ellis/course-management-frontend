@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { BaseUrlContext } from "../../BaseUrlContext";
 import PageTitle from "../components/PageTitle";
 import { postCourse } from "../crud_services/coursesCrud";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const NewCourse = () => {
   const [newCourse, setNewCourse] = useState("");
   const [instructorList, setInstructorList] = useState(null);
   const [instructorsLoading, setInstructorsLoading] = useState(true);
   const [instructorName, setInstructorName] = useState("");
+  const [isError, setIsError] = useState(false);
   const baseUrl = useContext(BaseUrlContext);
   const navigate = useNavigate();
 
@@ -20,6 +23,7 @@ const NewCourse = () => {
         setInstructorList(data);
       } catch (error) {
         console.log(error);
+        setIsError(true);
       } finally {
         setInstructorsLoading(false);
       }
@@ -37,7 +41,8 @@ const NewCourse = () => {
     setInstructorName(event.target.value);
   };
 
-  if (instructorsLoading) return <p>Loading</p>;
+  if (instructorsLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>

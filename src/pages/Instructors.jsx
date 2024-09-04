@@ -3,13 +3,15 @@ import InstructorRow from "../components/InstructorRow";
 import useFetchInstructors from "../custom_hooks/useFetchInstructors";
 import { Link } from "react-router-dom";
 import Wrapper from "../layouts/Wrapper";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const Instructors = () => {
   const { instructorList, setInstructorList, isLoading, isError } =
     useFetchInstructors();
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>An error occurred.</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>

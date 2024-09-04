@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import { deleteInstructor } from "../crud_services/instructorsCrud";
 import InfoCard from "../components/InfoCard";
 import { BaseUrlContext } from "../../BaseUrlContext";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const InstructorDetails = () => {
   const { id } = useParams();
   const [instructorDetails, setInstructorDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const baseUrl = useContext(BaseUrlContext);
 
   useEffect(() => {
@@ -19,6 +22,7 @@ const InstructorDetails = () => {
         setInstructorDetails(data);
       } catch (error) {
         console.log(error);
+        setIsError(true);
       } finally {
         setIsLoading(false);
       }
@@ -26,7 +30,8 @@ const InstructorDetails = () => {
     getInstructorDetails(id);
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>

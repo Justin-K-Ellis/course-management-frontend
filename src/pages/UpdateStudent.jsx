@@ -6,6 +6,8 @@ import { putNewName, postNewCourse } from "../crud_services/studentCrud";
 import { useNavigate } from "react-router-dom";
 import { deregisterCourse } from "../crud_services/studentCrud";
 import { BaseUrlContext } from "../../BaseUrlContext";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const UpdateStudent = () => {
   const { studentId, studentName } = useParams();
@@ -89,10 +91,8 @@ const UpdateStudent = () => {
     navigate(-1);
   };
 
-  if (coursesLoading) return <p>Loading...</p>;
-  if (isCoursesError) return <p>Something went wrong.</p>;
-  if (registeredLoading) return <p>Loading...</p>;
-  if (isRegisteredError) return <p>Something went wrong.</p>;
+  if (coursesLoading || registeredLoading) return <LoadingSpinner />;
+  if (isCoursesError || isRegisteredError) return <ErrorMessage />;
 
   return (
     <main>

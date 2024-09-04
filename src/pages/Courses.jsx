@@ -4,6 +4,8 @@ import CourseRow from "../components/CourseRow";
 import PageTitle from "../components/PageTitle";
 import Wrapper from "../layouts/Wrapper";
 import { BaseUrlContext } from "../../BaseUrlContext";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const Courses = () => {
   const [coursesInfo, setCoursesInfo] = useState(null);
@@ -16,6 +18,8 @@ const Courses = () => {
       try {
         const response = await fetch(`${baseUrl}/courses`);
         const data = await response.json();
+        console.log("got data");
+
         setCoursesInfo(data);
       } catch (error) {
         console.log(error);
@@ -25,10 +29,10 @@ const Courses = () => {
       }
     };
     getCourses();
-  }, [coursesInfo]);
+  }, []);
 
-  if (isLoading) return <p>Loading</p>;
-  if (isError) return <p>An error occured.</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <main>
