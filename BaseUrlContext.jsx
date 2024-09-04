@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const BaseUrlContext = createContext("http://localhost:3000");
+const BaseUrlContext = createContext(import.meta.env.VITE_API);
 
 export { BaseUrlContext };
