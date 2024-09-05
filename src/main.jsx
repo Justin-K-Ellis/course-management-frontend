@@ -15,6 +15,7 @@ import Students from "./pages/Students.jsx";
 import StudentInfo from "./pages/StudentInfo.jsx";
 import NewStudent from "./pages/NewStudent.jsx";
 import UpdateStudent from "./pages/UpdateStudent.jsx";
+import FourOhFour from "./pages/404.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
         element: <InstructorDetails />,
       },
     ],
+    errorElement: <FourOhFour />,
   },
 ]);
 
