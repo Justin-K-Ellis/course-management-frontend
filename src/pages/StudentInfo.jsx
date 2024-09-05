@@ -25,7 +25,6 @@ const StudentInfo = () => {
     getCourses();
   }, []);
 
-  registeredCourses && console.log(registeredCourses);
   const noCourses = "This student is not taking any courses.";
 
   return (

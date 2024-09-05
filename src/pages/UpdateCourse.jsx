@@ -21,8 +21,6 @@ const UpdateCourse = () => {
     navigate("../courses");
   };
 
-  console.log("Is error:", isError);
-
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <ErrorMessage />;
 

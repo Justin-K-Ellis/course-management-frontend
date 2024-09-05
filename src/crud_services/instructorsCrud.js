@@ -1,5 +1,5 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://course-management-1p45.onrender.com";
 
 const postInstructor = (newInstructor) => {
   const url = "/instructors/post";

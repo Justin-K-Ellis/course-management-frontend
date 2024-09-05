@@ -46,7 +46,7 @@ const UpdateStudent = () => {
     const getRegisteredCourses = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/students/all-courses/${studentId}`
+          `${baseUrl}/students/all-courses/${studentId}`
         );
         const data = await response.json();
         setRegisteredCourses(data);
